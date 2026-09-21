@@ -22,9 +22,9 @@ from okaffpy import detect_first_change, detect_multiple_changes
 
 rng = np.random.default_rng(2026)
 stream = np.concatenate([rng.normal(size=200), rng.normal(3, 1, size=200)])
-first = detect_first_change(stream, burn_in=100, quantile=0.92, n_rff=500, seed=2026)
+first = detect_first_change(stream, burn_in=50, quantile=0.92, n_rff=500, seed=2026)
 print(first)
-alarms = detect_multiple_changes(stream, burn_in=100, quantile=0.92, n_rff=500, seed=2026)
+alarms = detect_multiple_changes(stream, burn_in=50, quantile=0.92, n_rff=500, seed=2026)
 print(alarms)
 ```
 
@@ -48,7 +48,7 @@ All numeric settings above must be finite. Forgetting factors are clipped to the
 
 ```python
 alarms = detect_multiple_changes(
-    stream, burn_in=100, quantile=0.95, n_rff=500, seed=2026,
+    stream, burn_in=50, quantile=0.95, n_rff=500, seed=2026,
     lambda0=0.99, lambda1=0.99, eta=0.0005, clip=(0.01, 0.999),
     reference_threshold_rate=0.15, monitoring_threshold_rate=0.02,
 )
@@ -61,8 +61,8 @@ alarms = detect_multiple_changes(
 Both modes use two-sided thresholds and the same Gaussian-theory initialization. During burn-in, the threshold mean and second moment are updated using `reference_threshold_rate`. In fixed mode, the lower and upper bounds after the final burn-in observation are frozen. Monitoring raises an alarm when the statistic is strictly below the lower bound or above the upper bound; equality does not trigger an alarm. Monitoring observations never update the frozen bounds or their moments. The detector's forgetting factor can still adapt.
 
 ```python
-first = detect_first_change(stream, burn_in=100, thresholding_method="fixed")
-alarms = detect_multiple_changes(stream, burn_in=100, thresholding_method="fixed")
+first = detect_first_change(stream, burn_in=50, thresholding_method="fixed")
+alarms = detect_multiple_changes(stream, burn_in=50, thresholding_method="fixed")
 ```
 
 `quantile` controls the learned interval width. `monitoring_threshold_rate` has no effect in fixed mode (it must still be a valid rate). Multiple-change detection learns a fresh interval from the next burn-in period after each alarm. The default remains `thresholding_method="adaptive"`.
@@ -146,8 +146,8 @@ An alarm occurs when `statistic < lower` or `statistic > upper`. Equality does n
 CSV input must have a header and only numeric feature columns (exclude timestamps and labels).
 
 ```sh
-okaff-detect-single data.csv --burn-in 100 --output-csv first.csv
-okaff-detect-multiple data.csv --burn-in 100 --quantile 0.92 --n-rff 500 --seed 2026 --output-csv alarms.csv
+okaff-detect-single data.csv --burn-in 50 --output-csv first.csv
+okaff-detect-multiple data.csv --burn-in 50 --quantile 0.92 --n-rff 500 --seed 2026 --output-csv alarms.csv
 ```
 
 Both commands support `--lambda0`, `--lambda1`, `--eta`, `--clip LOWER UPPER`, `--reference-threshold-rate`, and `--monitoring-threshold-rate`, with the defaults and limits listed above.
@@ -155,14 +155,14 @@ Both commands support `--lambda0`, `--lambda1`, `--eta`, `--clip LOWER UPPER`, `
 Choose `--thresholding-method fixed` to learn and freeze two-sided bounds, or `--thresholding-method adaptive` (default) to keep updating them:
 
 ```sh
-okaff-detect-single data.csv --burn-in 100 --thresholding-method fixed
-okaff-detect-multiple data.csv --burn-in 100 --thresholding-method fixed
+okaff-detect-single data.csv --burn-in 50 --thresholding-method fixed
+okaff-detect-multiple data.csv --burn-in 50 --thresholding-method fixed
 ```
 
 To customize detector parameters:
 
 ```sh
-okaff-detect-multiple data.csv --burn-in 100 \
+okaff-detect-multiple data.csv --burn-in 50 \
   --lambda0 0.99 --lambda1 0.99 --eta 0.0005 --clip 0.01 0.999 \
   --reference-threshold-rate 0.15 --monitoring-threshold-rate 0.02
 ```
