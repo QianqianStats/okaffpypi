@@ -174,4 +174,3 @@ python -m unittest discover -s tests -v
 python -m pip wheel . --no-deps -w dist
 ```
 
-The implementation lives in `src/okaffpy`. Unrelated detectors, experiment drivers, and old source files are excluded. During this conversion the original folder was preserved in the sibling `okaffpy-original-20260921` archive; that archive is not needed to install or run this package. Existing research folders elsewhere in the workspace are unchanged.
