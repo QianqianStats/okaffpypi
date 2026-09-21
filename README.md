@@ -1,6 +1,6 @@
 # okaffpy
 
-A standalone Python package implementing OKAFF (online kernel-based changepoint detector with adaptive forgetting factor) changepoint detection. Includes the streaming statistic, Gaussian random Fourier features, adaptive two-sided thresholds, Gaussian theory helpers, and single- and multiple-alarm detection.
+A Python package implementing OKAFF (online kernel-based changepoint detector with adaptive forgetting factor) changepoint detection. Includes the streaming statistic, Gaussian random Fourier features, adaptive two-sided thresholds, Gaussian theory helpers, and single- and multiple-alarm detection.
 
 Licensed under the [MIT License](LICENSE).
 
