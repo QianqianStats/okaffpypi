@@ -24,10 +24,10 @@ import numpy as np
 from okaffpy import detect_first_change, detect_multiple_changes
 
 rng = np.random.default_rng(2026)
-stream = np.concatenate([rng.normal(size=200), rng.normal(3, 1, size=200)])
-first = detect_first_change(stream, burn_in=50, quantile=0.92, n_rff=500, seed=2026)
+stream = np.concatenate([rng.normal(size=100), rng.normal(3, 1, size=200)])
+first = detect_first_change(stream, burn_in=50, quantile=0.99, n_rff=500, seed=2026)
 print(first)
-alarms = detect_multiple_changes(stream, burn_in=50, quantile=0.92, n_rff=500, seed=2026)
+alarms = detect_multiple_changes(stream, burn_in=50, quantile=0.99, n_rff=500, seed=2026)
 print(alarms)
 ```
 
