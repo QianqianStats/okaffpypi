@@ -6,11 +6,14 @@ Licensed under the [MIT License](LICENSE).
 
 ## Install
 
-Requires Python 3.10 or later. From this directory:
+Requires Python 3.10 or later. First change to the project directory (the folder containing `pyproject.toml`), replacing `/path/to/okaffpy` with its actual location:
 
 ```sh
+cd /path/to/okaffpy
 python -m pip install .
 ```
+
+The `.` means the current directory. If you are already in the project directory, skip the `cd` command.
 
 For development, use `python -m pip install -e .`. Runtime dependencies are NumPy, SciPy, and pandas. 
 
@@ -173,4 +176,3 @@ okaff-detect-multiple data.csv --burn-in 50 \
 python -m unittest discover -s tests -v
 python -m pip wheel . --no-deps -w dist
 ```
-
