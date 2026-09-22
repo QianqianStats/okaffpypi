@@ -12,9 +12,9 @@ Requires Python 3.10 or later. From this directory:
 python -m pip install .
 ```
 
-For development, use `python -m pip install -e .`. Runtime dependencies are NumPy, SciPy, and pandas. No other project folders or `onlinecp` installation are required.
+For development, use `python -m pip install -e .`. Runtime dependencies are NumPy, SciPy, and pandas. 
 
-## Detect changes
+## Detect changepoints
 
 ```python
 import numpy as np
@@ -40,7 +40,7 @@ Both detection functions also accept these keyword arguments:
 | `lambda0` | `0.999` | Initial forgetting factor; `0 <= lambda0 < 1` |
 | `lambda1` | `0.999` | Forgetting factor assigned after the first observation; `0 <= lambda1 < 1` |
 | `eta` | `0.001` | Nonnegative learning rate for adapting the forgetting factor |
-| `clip` | `(0.001, 0.999)` | Forgetting-factor bounds; `0 <= lower < upper <= 1` |
+| `clip` | `(0.001, 0.999)` | Forgetting-factor bounds; `0 < lower < upper < 1` |
 | `reference_threshold_rate` | `0.1` | Threshold update rate during burn-in; strictly between 0 and 1 |
 | `monitoring_threshold_rate` | `0.01` | Threshold update rate during monitoring; strictly between 0 and 1 |
 
@@ -54,7 +54,7 @@ alarms = detect_multiple_changes(
 )
 ```
 
-**Reported change points are one-based alarm positions**, not retrospective estimates of the actual change onset. The quantile controls the adaptive Gaussian interval; it is not a calibrated stream-wide false-alarm probability.
+**Reported change points are one-based alarm positions**, not retrospective estimates of the actual change onset. The quantile controls the adaptive threshold interval; it is not a calibrated stream-wide false-alarm probability.
 
 ## Fixed thresholds learned during burn-in
 

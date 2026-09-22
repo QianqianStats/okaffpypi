@@ -4,7 +4,7 @@ from typing import Callable, Optional, Tuple
 import numpy as np
 
 class OKAFF:
-    """Online kernel adaptive forgetting factor detector.
+    """Online kernel-based detector with adaptive forgetting factor.
 
     Supply a kernel feature map through ``feat_func`` (identity by default).
     ``update`` returns a two-sided fixed-threshold alarm; use
