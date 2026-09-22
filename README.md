@@ -1,4 +1,4 @@
-# okaffpy
+# okaff
 
 A Python package implementing OKAFF (online kernel-based changepoint detector with adaptive forgetting factor) changepoint detection. Includes the streaming statistic, Gaussian random Fourier features, adaptive two-sided thresholds, Gaussian theory helpers, and single- and multiple-alarm detection.
 
@@ -6,10 +6,12 @@ Licensed under the [MIT License](LICENSE).
 
 ## Install
 
-Requires Python 3.10 or later. First change to the project directory (the folder containing `pyproject.toml`), replacing `/path/to/okaffpy` with its actual location:
+Requires Python 3.10 or later. After publication on PyPI, install with `python -m pip install okaff`.
+
+To install from source, first change to the project directory (the folder containing `pyproject.toml`), replacing `/path/to/okaffpypi` with its actual location:
 
 ```sh
-cd /path/to/okaffpy
+cd /path/to/okaffpypi
 python -m pip install .
 ```
 
@@ -21,7 +23,7 @@ For development, use `python -m pip install -e .`. Runtime dependencies are NumP
 
 ```python
 import numpy as np
-from okaffpy import detect_first_change, detect_multiple_changes
+from okaff import detect_first_change, detect_multiple_changes
 
 rng = np.random.default_rng(2026)
 stream = np.concatenate([rng.normal(size=100), rng.normal(3, 1, size=200)])
@@ -73,7 +75,7 @@ alarms = detect_multiple_changes(stream, burn_in=50, thresholding_method="fixed"
 ## Streaming API
 
 ```python
-from okaffpy import OKAFF, OKAFFAdaptiveThreshold, estimate_gaussian_gamma, make_rff
+from okaff import OKAFF, OKAFFAdaptiveThreshold, estimate_gaussian_gamma, make_rff
 
 reference = rng.normal(size=(50, 1))
 feature = make_rff(
@@ -105,7 +107,7 @@ The following runnable example uses illustrative bounds of `(0.2, 0.8)`. Choose 
 
 ```python
 import numpy as np
-from okaffpy import OKAFF, estimate_gaussian_gamma, make_rff
+from okaff import OKAFF, estimate_gaussian_gamma, make_rff
 
 rng = np.random.default_rng(2026)
 data = np.concatenate([rng.normal(size=200), rng.normal(3, 1, size=200)])

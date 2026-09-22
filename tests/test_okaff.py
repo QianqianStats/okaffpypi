@@ -6,8 +6,8 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import numpy as np
 import pandas as pd
-from okaffpy import single, multiple
-from okaffpy import (
+from okaff import single, multiple
+from okaff import (
     OKAFF, OKAFFAdaptiveThreshold, detect_first_change,
     detect_multiple_changes, make_rff, estimate_gaussian_gamma,
     okaff_gaussian_theory_moments, gaussian_kernel_theory_terms,
