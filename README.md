@@ -1,6 +1,6 @@
 # okaff
 
-A Python package implementing OKAFF (online kernel-based changepoint detector with adaptive forgetting factor) changepoint detection. Includes the streaming statistic, Gaussian random Fourier features, adaptive two-sided thresholds, Gaussian theory helpers, and single- and multiple-alarm detection.
+A Python package implementing OKAFF (online kernel-based changepoint detector with adaptive forgetting factors) changepoint detection. Includes the streaming statistic, Gaussian random Fourier features, adaptive two-sided thresholds, Gaussian theory helpers, and single- and multiple-alarm detection.
 
 Licensed under the [MIT License](LICENSE).
 
@@ -59,7 +59,7 @@ alarms = detect_multiple_changes(
 )
 ```
 
-**Reported change points are one-based alarm positions**, not retrospective estimates of the actual change onset. The quantile controls the adaptive threshold interval; it is not a calibrated stream-wide false-alarm probability.
+Reported change points indicate the observation where an alarm was triggered, counting from 1. They do not estimate the earlier observation where the underlying change began. The quantile controls the adaptive threshold interval; it is not a calibrated stream-wide false-alarm probability.
 
 ## Fixed thresholds learned during burn-in
 
@@ -70,7 +70,7 @@ first = detect_first_change(stream, burn_in=50, thresholding_method="fixed")
 alarms = detect_multiple_changes(stream, burn_in=50, thresholding_method="fixed")
 ```
 
-`quantile` controls the learned interval width. `monitoring_threshold_rate` has no effect in fixed mode (it must still be a valid rate). Multiple-change detection learns a fresh interval from the next burn-in period after each alarm. The default remains `thresholding_method="adaptive"`.
+`quantile` controls the learned thresholds interval width. `monitoring_threshold_rate` has no effect in fixed mode (it must still be a valid rate). Multiple-change detection learns a fresh interval from the next burn-in period after each alarm. The default remains `thresholding_method="adaptive"`.
 
 ## Streaming API
 
